@@ -1,0 +1,31 @@
+name: Node.js Cl
+
+
+on:
+  push:
+     branches:
+      - main
+  pull_request:
+    branches:
+    - main:
+
+jobs:
+  buid:
+     runs-on: ubuntu-latest
+
+     strategy:
+       matrix:
+         node-version: [20.x]
+
+     steps:
+     - name: Checkout repository
+        uses: action /setupnode@V3
+        with:
+          node-version: $ {{ matrix.node-version }}
+
+      - name: Install dependencies
+         run: npm install
+
+
+      - name: Start application
+         run: npm start
